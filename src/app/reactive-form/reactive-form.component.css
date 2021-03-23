@@ -1,0 +1,206 @@
+
+@media (min-width:766px){
+    #email{
+        width:440px !important;
+    }
+    #subscribe{
+        position: relative;
+        left: 100px !important;
+    }
+    
+}
+
+@media (max-width:376px){
+    .btn{
+        width:100px !important;
+       
+    }
+    body{
+        background: none !important;
+    }
+
+}
+@media (max-width:465px){
+    .btn{
+        width:100px !important;
+       
+    }
+}
+@media(max-width:765px) and (min-width:450px) {
+    #subscribe{
+        position: relative !important;
+       
+        text-align: center !important;
+    }
+    
+
+}
+@media(max-width:765px) {
+    #addr2{
+        margin-top: 30px !important;
+    }
+}
+
+*{
+    box-sizing: border-box;
+}
+body{
+    background-attachment: scroll;
+}
+
+
+
+.container{
+    max-width:550px;
+    
+    background: white;
+    border-radius: 10px;
+    margin-top:35px;
+    
+    
+}
+
+.heding{
+    height:60px;
+    background-color:#0d6efd;
+
+    margin-left: -16px;
+    margin-right: -16px;
+    border-radius: 10px 10px 0 0;
+    color: white;
+    vertical-align: middle;
+    padding-top: 10px;
+    
+   
+}
+.form-control{
+    display: inline;
+    border-radius: 20px;
+    width: 90%;
+}
+select {
+    color:#6c757d;
+}
+
+.req{
+    display: block;
+    color:rgb(240, 11, 11);
+    font-size: 13px;
+    position: relative;
+    left:30px;
+}
+.star{
+    color:red;
+    display: block;
+    position: relative;
+    left: 10px;
+    top:8px
+}
+.reg{
+    margin-top: 30px;
+}
+
+.sub-grp{
+    margin-bottom:20px;
+}
+#mobile2{
+    position: relative !important;
+    left:10px !important;
+}
+#generror{
+    position: relative;
+    left:50px;
+    margin-bottom:20px;
+}
+.btn{
+    width:160px;
+   
+}
+#gender{
+    margin-top: 20px;
+}
+
+
+.form-select{
+   
+ 
+ width: 90%;
+ height: 38px;
+ border-radius: 20px;
+ border-color: lightgray;
+ outline: none;
+}
+
+.optional{
+    position: relative;
+    left:0px;
+    margin-bottom: 35px;
+}
+
+#exprsn{
+    width:60%;
+    background: none;
+}
+#refresh{
+    border:none;
+    background: none;
+    position: relative;
+    left:20px;
+    top:5px;
+
+}
+.fas{
+    font-size: 2em;
+    color:rgba(8, 51, 170, 0.788);
+}
+#subscribe{
+    position: relative;
+    top:-35px;
+}
+
+#last{
+    position: relative;
+    top:-20px;
+   
+}
+#extra1{
+    height:60px;
+}
+
+#next{
+    margin-top: 20px;
+}
+#signin{
+    margin-top: 20px;
+}
+
+
+
+input:focus::placeholder{
+    color:transparent;
+}
+.bottom{
+    position: relative;
+    top:30px;
+}
+
+input.ng-touched.ng-invalid  {
+    border:red 1px solid;
+}
+
+.errormsg{
+    color:red;
+    font-size: 14px;
+    position: relative;
+    left: 10px;
+}
+input.ng-touched.ng-valid  {
+    border:green 1px solid;
+}
+
+
+
+
+
+
+

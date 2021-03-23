@@ -1,0 +1,246 @@
+<!--<div class="form-group" [formGroup] = "reactiveForm">
+
+    Name : <input type="text" [FormControlName]="Name" class="form-control">
+    Mail : <input type="text" [FormControlName]="Mail" class="form-control">
+    Password : <input type="text" [FormControlName]="Passsword" class="form-control">
+    Confirm Password : <input type="text" [FormControlName]="Password2" class="form-control">
+    <button class="btn">Reset</button>
+    <button class="btn">Sign Up</button>
+</div>-->
+<!--
+<div class="container" [formGroup] = "registrationForm">
+  First Name: <input type="text" class="form-control" formControlName = "firstName">
+  Last Name: <input type="text" class="form-control" formControlName = "lastName">
+  DOB : <input type="date" name="" id="" class="form-control" formControlName = "dob"> <br> <br>
+  <button  class="btn btn-primary" (click) ="save()">save</button>
+  <button  class="btn btn-primary" (click) ="clear()">Reset</button>
+  <button  class="btn btn-primary" (click) ="fill()">fill</button> <br> <br>
+  <button  class="btn btn-primary" (click) ="fill2()">customfill</button>
+</div>
+-->
+
+
+<div class="container" *ngIf = "submitted == false">
+    <h2 class="heding text-center" title="hello">Registration Form</h2>
+    <!--First Group-->
+    <div class="container" [formGroup] = "registrationForm">
+        <div class="container" id="grp1" *ngIf = "show == 'grp1'" >
+        
+            <div class="row">
+                <div class="sub-grp col-md-6">
+                    <span id= "fnstar" class="star">*</span>
+                    <input type="text" name="firstName" formControlName = "firstName" placeholder="First Name"id="firstname" class="form-control ip left">
+                    <div *ngIf = "  registrationForm.controls['firstName'].touched &&  registrationForm.controls['firstName'].errors">
+                        <p *ngIf = " registrationForm.controls['firstName'].errors.required " class="errormsg">Please Enter your First Name</p>
+                        <p *ngIf = " registrationForm.controls['firstName'].errors.minlength" class="errormsg">First Name is minimum 3 characters</p>
+                    </div>
+                
+                </div>
+                
+                <div class="sub-grp col-md-6">
+                    <span id= "lnstar" class="star">*</span>
+                    <input type="text" name="lname" formControlName = "lastName"  id="lastname" placeholder="Last Name" class="form-control ip  right">
+                    <div *ngIf = "registrationForm.controls['lastName'].touched && registrationForm.controls['lastName'].errors">
+                        <p *ngIf = "registrationForm.controls['lastName'].errors.required " class="errormsg">Please Enter your Last Name</p>
+                        <p *ngIf = "registrationForm.controls['lastName'].errors.minlength" class="errormsg">Last Name is minimum 3 characters</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row mailrow">
+                <div class="sub-grp col-md-12">
+                    <span id= "mailstar" class="star">*</span>
+                    <input type="text"  name="email" formControlName = "email"  placeholder="Enter Your Email" id="email" class="form-control ip"><br>
+                    <div *ngIf = "registrationForm.controls['email'].touched && registrationForm.controls['email'].errors">
+                        <p *ngIf = "registrationForm.controls['email'].errors.required" class="errormsg">Please Enter your Mail Id</p>
+                        <p *ngIf = "registrationForm.controls['email'].errors.pattern" class="errormsg">Enter valid Mail Id</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="sub-grp col-md-6 pass">
+                    <span id= "p1star" class="star">*</span>
+                    <input type="password" name="pwd1"  formControlName = "password1"  placeholder="Password "id="password" class="form-control ip left">
+                 
+                    <div *ngIf = "registrationForm.controls['password1'].touched &&registrationForm.controls['password1'].errors">
+                        <p *ngIf = "registrationForm.controls['password1'].errors.required " class="errormsg">Please Enter Password</p>
+                        <p *ngIf = "registrationForm.controls['password1'].errors.minlength" class="errormsg">passwordis minimum 8 characters</p>
+                    </div>
+                </div>
+                <div class="sub-grp col-md-6 pass">
+                    <span id= "p2star" class="star">*</span>
+                    <input type="password" name="pwd2" id="pwd2" formControlName = "password2" placeholder="Confirm Password" class="form-control ip  right">
+                    
+                    <div *ngIf = "registrationForm.controls['password2'].touched && registrationForm.controls['password2'].errors">
+                        <p *ngIf = "registrationForm.controls['password2'].errors.required" class="errormsg">Please Confirm your password</p> 
+                        <p *ngIf = "registrationForm.controls['password2'].value != registrationForm.controls['password1'].value"class="errormsg">passwords didnot match</p>
+                    </div>
+                  </div>
+               
+            </div>
+            <div class="row">
+                <div class="sub-grp col-md-6 mob">
+                    <span id= "m1star" class="star">*</span>
+                    <input type="tel" name="mobile" placeholder="Mobile Number" id="mobilenumber"  formControlName = "mobile1" class="form-control ip left"><br>
+                    <div *ngIf = "registrationForm.controls['mobile1'].touched && registrationForm.controls['mobile1'].errors">
+                        <p *ngIf = "registrationForm.controls['mobile1'].errors.required" class="errormsg">Please Enter your Mobile Number</p>
+                        <p *ngIf = "registrationForm.controls['mobile1'].errors.minlength" class="errormsg">Enter valid Mobile Number</p>
+                        <p *ngIf = "registrationForm.controls['mobile1'].errors.maxlength" class="errormsg">Enter valid Mobile Number</p>
+                    </div>
+                </div>
+                <div class="sub-grp col-md-6 mob">
+                    <br>                       
+                    <input type="tel" name="mobile" placeholder="Alternate Number" id="mobile2" formControlName = "mobile2" class="form-control ip right"><br>
+                </div>
+            </div>
+            <div class="row mx-auto"  id="gender">
+               
+                <div class="col-md-3 "><span id= "genstar" class="star"></span>    Gender</div>
+                <div class="col-md-3">
+                    <input type="radio"  class="gender"  formControlName = "gender" value="male" ><span class="gen radio-text">Male</span>
+                </div>
+                <div class="col-md-3">
+                    <input type="radio"class="gender"  formControlName = "gender" value="female" ><span class="gen radio-text"> Female</span>
+                </div>
+                <div class="col-md-3">
+                    <input type="radio"  class="gender"  formControlName = "gender"  value="other"> <span class="gen radio-text"> other</span><br>
+                </div>
+                <div *ngIf = "registrationForm.controls['gender'].touched &&registrationForm.controls['gender'].invalid">
+                    <p class="errormsg">Please Select gender</p>
+                  
+                </div>
+            </div>
+            <div class="row bottom">
+                <div class="col-md-12 d-flex justify-content-between">
+                    <a href="" id="signin" class="btn btn-primary">Sign in </a>
+                    <button type="button" class="btn btn-primary" id="next" (click)= "showGrp2();generateCaptcha()"
+                    [disabled] = "registrationForm.controls['gender'].invalid|| registrationForm.controls['mobile1'].invalid  ||registrationForm.controls['password1'].invalid  || registrationForm.controls['password2'].invalid ||
+                    registrationForm.controls['email'].invalid ||registrationForm.controls['firstName'].invalid || registrationForm.controls['lastName'].invalid">
+                   Next</button>
+          
+                </div>
+            </div> <br><br>
+           </div>
+        <!--Second Group 
+         <div class="container" id="grp2" *ngIf = "show == 'grp2'">-->
+            <div class="container" id="grp2" *ngIf = "show == 'grp2'">
+                <div class="row">
+                    <div class="col-md-6 sub-grp" id="address1">
+                        <span id= "a1star" class="star">*</span>
+                        <input type="text" name="caddress" formControlName = "currentAddress"  placeholder="Current Address "id="address" class="form-control ip left">
+                        <div *ngIf = "registrationForm.controls['currentAddress'].touched && registrationForm.controls['currentAddress'].invalid">
+                           <p class="errormsg">Please Enter Your Address</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 sub-grp">
+                        <span id= "countrystar" class="star">*</span>
+                        <select name="country-list" formControlName = "currentCountry" class="form-select ip country" id="country1">
+                            <option value="null" disabled>Select Country</option>
+                            <option *ngFor = "let c of countries" value = {{c.code}}> {{c.name}}</option>
+                        </select>
+                        <div *ngIf = "registrationForm.controls['currentCountry'].touched && registrationForm.controls['currentCountry'].invalid">
+                            <p class="errormsg">Please Select Country</p>
+                         </div>
+                        
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 sub-grp">
+                        <span id= "statestar" class="star">*</span>
+                        <select class="form-select ip"  formControlName = "currentState" id="state1"  name = "state" >
+                            <option value="null" disabled>Select State</option>
+                            <option *ngFor = "let state of states[registrationForm.controls['currentCountry'].value]" value={{state}}>{{state}}</option>
+                        </select>
+                        <div *ngIf = "registrationForm.controls['currentState'].touched && registrationForm.controls['currentState'].invalid">
+                            <p class="errormsg">Please Select State</p>
+                         </div>
+                       
+                    </div>
+                    <div class="col col-md-6 city1">
+                        <span id= "c1star" class="star">*</span>
+                        <input type="text" name="city1" placeholder="Current City" formControlName = "currentCity" class="form-control ip right">
+                        <div *ngIf = "registrationForm.controls['currentCity'].touched && registrationForm.controls['currentCity'].invalid">
+                            <p class="errormsg">Please Enter Your City Name</p>
+                         </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 sub-grp optional" id="address2">
+                        <input type="text" name="paddress" placeholder="Permanent Address "id="addr2" class="form-control ip left">
+                    </div>
+                    <div class="col-md-6 sub-grp optional">
+                        <select name="country-list2" formControlName = "permanentCountry" class="form-select ip country " id="country2">
+                            <option value="null" disabled>Select Permanent Country</option>      
+                            <option *ngFor = "let c of countries" value = {{c.code}}> {{c.name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 sub-grp optional">
+                        <select class="form-select ip"  name = "state2" formControlName = "permanentState"id="state2">
+                            <option value="null" disabled>Select Permanent State</option>
+                            <option *ngFor = "let state of states[registrationForm.controls['permanentCountry'].value]" value={{state}}>{{state}}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 city2 optional">
+                        <input type="text" name="city2" placeholder="Permanent City" formControlName = "permanentCity" id="city2" class="form-control ip right">
+                    </div>
+                </div>
+               
+                <div class="row captch-row">
+                    <div class=" col-md-6 captcha-res sub-grp">
+                        <span id="captcha-star" class="star">*</span> 
+                        <input type="number" name="result" id="result" formControlName = "captchaResult" (change) ="validateCaptcha()"  class="form-control ip"  placeholder="Enter captcha Result" > <br>
+                        <div *ngIf = "registrationForm.controls['captchaResult'].touched && registrationForm.controls['captchaResult'].errors">
+                            <p *ngIf = "registrationForm.controls['captchaResult'].errors.required" class="errormsg">Please Enter Captcha Result</p>
+                            <p *ngIf = "registrationForm.controls['captchaResult'].value" != actualCaptchaResult class="errormsg">Invalid Captcha</p>
+                        </div>
+                    </div>
+                   
+                    <div class="col-md-6 captcha-expr sub-grp">
+                        <br>
+                        <input type="text" name="exprsn" id="exprsn" formControlName = "captchaExpression" [(ngModel)] = "expr" class="optional captcha field ip form-control" readonly>
+                        <button id="refresh" class="captcha field" type="button" (click) ="generateCaptcha()"><i class="fas fa-sync-alt refrsh"></i></button> 
+                    </div>
+                   
+                    
+                    
+                
+                </div>                                     
+                <div class="row" id="subscribe">
+                    <div class="col-md-12 sub-grp">
+                         subscibe to news letter                     
+                         <input type="radio"  value="y"   checked formControlName="subscription"> <span class="sub-textY">yes</span>
+                         <input type="radio" value="N"  formControlName="subscription"> <span class="sub-textN"> No</span>
+                    </div>
+                </div>
+                <div class="row" id="last">
+                    <div class="col-md-12 d-flex justify-content-around">
+                        <button type="button" class="btn btn-primary" id="prev" (click) = "showGrp1()">Prev</button>
+                        <button type="submit" class="btn btn-primary" id="signup" (click)= "save()"
+                        [disabled] = "registrationForm.controls['currentAddress'].invalid|| 
+                        registrationForm.controls['currentCity'].invalid  ||registrationForm.controls['password1'].invalid|| 
+                        registrationForm.controls['currentCountry'].invalid ||
+                        registrationForm.controls['currentState'].invalid ||registrationForm.controls['captchaResult'].invalid">Sign Up</button>
+                    </div>
+                </div>   
+            </div>
+          </div>
+        <div id="extra1"></div>
+      </div> 
+      <div id="extra1"></div>
+      
+
+      <app-welcome  *ngIf = "submitted == true"></app-welcome>
+
+
+
+
+
+
+
+
+
+
+
+
+

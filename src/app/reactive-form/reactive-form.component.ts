@@ -25,6 +25,9 @@ export class ReactiveFormComponent implements OnInit {
   selectedState2:any;
   rf ="registrationForm.controls"
   submitted :boolean;
+  mailreg:any;
+  mobilereg:any;
+  
  
  
   
@@ -60,6 +63,9 @@ export class ReactiveFormComponent implements OnInit {
     this.op ="";
     this.actualCaptchaResult = null;
     this.submitted = false;
+    this.mailreg="[a-zA-Z0-9\.-]+@[a-zA-Z0-9-]+[.]+[a-z]{2,4}";
+    this.mobilereg="[0-9]{10}";
+    
 
     
     
@@ -88,8 +94,8 @@ export class ReactiveFormComponent implements OnInit {
     mobile2  : new FormControl('',[Validators.minLength(10),Validators.minLength(10),Validators.maxLength(10)]),
     gender   :    new FormControl('',[Validators.required]),
     currentAddress  : new FormControl('',[Validators.required]),
-    currentCountry  : new FormControl('',[Validators.required]),
-    currentState   : new FormControl('',[Validators.required]),
+    currentCountry  : new FormControl('null',[Validators.required]),
+    currentState   : new FormControl('null',[Validators.required]),
     currentCity    :    new FormControl('',[Validators.required]),
     permanentAddress :new FormControl(),
     permanentCountry  : new FormControl(),
@@ -97,7 +103,7 @@ export class ReactiveFormComponent implements OnInit {
     permanentCity   :  new FormControl(),
     captchaResult    : new FormControl('',[Validators.required]),
     captchaExpression   :  new FormControl(),
-    subscription   :    new FormControl()
+    subscription   :    new FormControl('y')
     
 
   })
@@ -110,6 +116,27 @@ export class ReactiveFormComponent implements OnInit {
     Password2:new FormControl('',[Validators.required,Validators.minLength(8)]),
   });
 */
+mailPattern(){
+  var mail;
+  mail = this.registrationForm.controls['email'].value;
+  if(!mail.match(this.mailreg)){
+    return false;
+  }
+  else{
+    return true;
+  }
+}
+
+mobilelPattern(){
+  var mobile;
+  mobile = this.registrationForm.controls['mobile1'].value;
+  if(!mobile.match(this.mobilereg)){
+    return false;
+  }
+  else{
+    return true;
+  }
+}
   
   save(){
     console.log(this.registrationForm.value);

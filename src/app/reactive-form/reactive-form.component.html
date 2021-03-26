@@ -52,8 +52,9 @@
                     <input type="text"  name="email" formControlName = "email"  placeholder="Enter Your Email" id="email" class="form-control ip"><br>
                     <div *ngIf = "registrationForm.controls['email'].touched && registrationForm.controls['email'].errors">
                         <p *ngIf = "registrationForm.controls['email'].errors.required" class="errormsg">Please Enter your Mail Id</p>
-                        <p *ngIf = "registrationForm.controls['email'].errors.pattern" class="errormsg">Enter valid Mail Id</p>
+                       
                     </div>
+                    <p *ngIf = "registrationForm.controls['email'].touched && !mailPattern()" class="errormsg">Enter valid Mail Id</p>
                 </div>
             </div>
             <div class="row">
@@ -83,9 +84,10 @@
                     <input type="tel" name="mobile" placeholder="Mobile Number" id="mobilenumber"  formControlName = "mobile1" class="form-control ip left"><br>
                     <div *ngIf = "registrationForm.controls['mobile1'].touched && registrationForm.controls['mobile1'].errors">
                         <p *ngIf = "registrationForm.controls['mobile1'].errors.required" class="errormsg">Please Enter your Mobile Number</p>
-                        <p *ngIf = "registrationForm.controls['mobile1'].errors.minlength" class="errormsg">Enter valid Mobile Number</p>
-                        <p *ngIf = "registrationForm.controls['mobile1'].errors.maxlength" class="errormsg">Enter valid Mobile Number</p>
+                       
+                        
                     </div>
+                    <p *ngIf = "registrationForm.controls['mobile1'].touched && !mobilelPattern()" class="errormsg">Enter valid Mobile Number</p>
                 </div>
                 <div class="sub-grp col-md-6 mob">
                     <br>                       
@@ -142,6 +144,7 @@
                          </div>
                         
                     </div>
+                    
                 </div>
                 <div class="row">
                     <div class="col-md-6 sub-grp">
@@ -192,8 +195,9 @@
                         <input type="number" name="result" id="result" formControlName = "captchaResult" (change) ="validateCaptcha()"  class="form-control ip"  placeholder="Enter captcha Result" > <br>
                         <div *ngIf = "registrationForm.controls['captchaResult'].touched && registrationForm.controls['captchaResult'].errors">
                             <p *ngIf = "registrationForm.controls['captchaResult'].errors.required" class="errormsg">Please Enter Captcha Result</p>
-                            <p *ngIf = "registrationForm.controls['captchaResult'].value" != actualCaptchaResult class="errormsg">Invalid Captcha</p>
+                            
                         </div>
+                        <p *ngIf = "registrationForm.controls['captchaResult'].touched &&registrationForm.controls['captchaResult'].value != actualCaptchaResult" class="errormsg">Invalid Captcha</p>
                     </div>
                    
                     <div class="col-md-6 captcha-expr sub-grp">
@@ -209,7 +213,7 @@
                 <div class="row" id="subscribe">
                     <div class="col-md-12 sub-grp">
                          subscibe to news letter                     
-                         <input type="radio"  value="y"   checked formControlName="subscription"> <span class="sub-textY">yes</span>
+                         <input type="radio"  value="y" formControlName="subscription"> <span class="sub-textY">yes</span>
                          <input type="radio" value="N"  formControlName="subscription"> <span class="sub-textN"> No</span>
                     </div>
                 </div>
@@ -220,7 +224,8 @@
                         [disabled] = "registrationForm.controls['currentAddress'].invalid|| 
                         registrationForm.controls['currentCity'].invalid  ||registrationForm.controls['password1'].invalid|| 
                         registrationForm.controls['currentCountry'].invalid ||
-                        registrationForm.controls['currentState'].invalid ||registrationForm.controls['captchaResult'].invalid">Sign Up</button>
+                        registrationForm.controls['currentState'].invalid ||registrationForm.controls['captchaResult'].invalid ||
+                        registrationForm.controls['captchaResult'].value != actualCaptchaResult ">Sign Up</button>
                     </div>
                 </div>   
             </div>
@@ -230,7 +235,7 @@
       <div id="extra1"></div>
       
 
-      <app-welcome  *ngIf = "submitted == true"></app-welcome>
+      <app-welcome  *ngIf = "submitted == true" [userData] = "registrationForm.value"></app-welcome>
 
 
 
